@@ -3,8 +3,8 @@ package file.updown.fileuploaddownload.controller;
 import file.updown.fileuploaddownload.entities.File;
 
 import file.updown.fileuploaddownload.message.ResponseMessage;
+import file.updown.fileuploaddownload.services.EncryptionService;
 import file.updown.fileuploaddownload.services.FileService;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -26,12 +26,36 @@ import java.util.List;
 public class FileController {
 
     private final FileService fileService;
-
-
+    @Autowired
+    private EncryptionService myService;
     @Autowired
     public FileController(FileService fileService) {
         this.fileService = fileService;
     }
+
+    @PostMapping("/encrypt")
+    public ResponseEntity<String> encryptFile(@RequestParam("filePath") String filePath) {
+        try {
+            myService.encryptFile(filePath);
+            return ResponseEntity.ok("File encrypted successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to encrypt file.");
+        }
+    }
+    @PutMapping("/decrypt")
+    public ResponseEntity<String> decryptFile(@RequestParam("filePath") String filePath) {
+        try {
+            myService.decryptFile(filePath);
+            return ResponseEntity.ok("File decrypted successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to decrypt file.");
+        }
+    }
+
+
+
+
+
 
 
 
@@ -46,6 +70,7 @@ public class FileController {
            // if((file.getContentType().substring(0,6).equals("920000") )||(file.getContentType().substring(0,6).equals("920999")) ||(file.getContentType().substring(0,6).equals("920900")  )){
                 Path path = Paths.get("./uploads/"+ newFileName);
                 Files.write(path, bytes);
+                myService.encryptFile(path.toString());
                 fileService.saveFile(path.toString());
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("Uploaded the file successfully: " + newFileName));
 //            }else {

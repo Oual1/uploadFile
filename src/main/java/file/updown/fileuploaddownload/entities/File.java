@@ -33,6 +33,7 @@ public class File {
     @Column(length = 5000)
     private String footer;
 
+
     public File(Long id, String fileName, FileState state, FileType type) {
         this.id = id;
         this.fileName = fileName;
