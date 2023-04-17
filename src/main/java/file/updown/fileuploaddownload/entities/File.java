@@ -23,15 +23,10 @@ public class File {
     private FileState state;
     @Enumerated(EnumType.STRING)
     private FileType type;
-    @JsonIgnore
-    @Column(length = 5000)
-    private String header;
-    @JsonIgnore
-    @Column(length = 5000)
-    private String body;
-    @JsonIgnore
-    @Column(length = 5000)
-    private String footer;
+    @OneToOne
+    private Detail detailFile;
+    @OneToOne
+    private Footer footerFile;
 
 
     public File(Long id, String fileName, FileState state, FileType type) {

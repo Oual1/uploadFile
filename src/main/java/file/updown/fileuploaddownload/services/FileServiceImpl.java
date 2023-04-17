@@ -1,8 +1,12 @@
 package file.updown.fileuploaddownload.services;
 
+import file.updown.fileuploaddownload.entities.Detail;
+import file.updown.fileuploaddownload.entities.Footer;
 import file.updown.fileuploaddownload.enums.FileState;
 import file.updown.fileuploaddownload.enums.FileType;
+import file.updown.fileuploaddownload.repositories.DetailRepository;
 import file.updown.fileuploaddownload.repositories.FileRepository;
+import file.updown.fileuploaddownload.repositories.FooterRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -16,9 +20,13 @@ import java.util.List;
 @Service
 public class FileServiceImpl implements FileService {
     private FileRepository fileRepository;
+    private FooterRepository footerRepository;
+    private DetailRepository detailRepository;
 
-    public FileServiceImpl(FileRepository fileRepository) {
+    public FileServiceImpl(FileRepository fileRepository, FooterRepository footerRepository, DetailRepository detailRepository) {
         this.fileRepository = fileRepository;
+        this.footerRepository= footerRepository;
+        this.detailRepository= detailRepository;
     }
 
 
@@ -78,19 +86,38 @@ public class FileServiceImpl implements FileService {
     public void segregateContentByType(file.updown.fileuploaddownload.entities.File segFile) throws IOException {
         String path = "./uploads/"+ segFile.getFileName();
         String content = Files.readString(Paths.get(path));
-        System.out.println(content.length());
+
+        Footer foo= new Footer();
+        Detail detail= new Detail();
         if (segFile.getType()== FileType.BORDEREAU_FACTURATION || segFile.getType()==FileType.REFUS_BORDEREAUX){
-            segFile.setHeader(content.substring(0, 227));
-            segFile.setBody(content.substring(227, 1977));
-            segFile.setFooter(content.substring(1977));
+//            segFile.setHeader(content.substring(0, 227));
+//            segFile.setBody(content.substring(227, 1977));
+//            segFile.setFooter(content.substring(1977));
+            foo.setContent(content.substring(1977));
+            detail.setContent(content.substring(227, 1977));
+
+
         }
         else {
-            segFile.setHeader(content.substring(0, 676));
-            segFile.setBody(content.substring(678, 2828));
-            segFile.setFooter(content.substring(2828));
+//            segFile.setHeader(content.substring(0, 676));
+
+            foo.setContent(content.substring(2828));
+            detail.setContent(content.substring(676, 2828));
+
         }
         segFile.setState(FileState.SEGREGATED);
+        footerRepository.save(foo);
+        detailRepository.save(detail);
+        segFile.setFooterFile(foo);
+        segFile.setDetailFile(detail);
+
         fileRepository.save(segFile);
+        foo.setFileFooter(segFile);
+        detail.setFileDetail(segFile);
+        footerRepository.save(foo);
+        detailRepository.save(detail);
+        System.out.println(detail.getContent());
+
     }
 
     @Override

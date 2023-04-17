@@ -23,12 +23,13 @@ import java.time.LocalDate;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/files/")
 public class FileController {
 
     private final FileService fileService;
     @Autowired
     private EncryptionService myService;
-    @Autowired
+
     public FileController(FileService fileService) {
         this.fileService = fileService;
     }
@@ -70,7 +71,7 @@ public class FileController {
            // if((file.getContentType().substring(0,6).equals("920000") )||(file.getContentType().substring(0,6).equals("920999")) ||(file.getContentType().substring(0,6).equals("920900")  )){
                 Path path = Paths.get("./uploads/"+ newFileName);
                 Files.write(path, bytes);
-                myService.encryptFile(path.toString());
+                //myService.encryptFile(path.toString());
                 fileService.saveFile(path.toString());
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("Uploaded the file successfully: " + newFileName));
 //            }else {
@@ -80,7 +81,7 @@ public class FileController {
             return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(new ResponseMessage("Unsupported file type:"));
     }
 
-    @GetMapping("/files/{id}")
+    @GetMapping("/all-files/{id}")
     public ResponseEntity<File> findFile(@PathVariable("id") Long id){
         File foundFile = fileService.retreiveFile(id);
         if (foundFile==null){
@@ -90,12 +91,12 @@ public class FileController {
             return ResponseEntity.ok().body(foundFile);
         }
     }
-    @GetMapping("/files")
+    @GetMapping("/all-files")
     public List<File> getFiles(){
         return fileService.getAllFiles();
     }
 
-    @GetMapping("/file/{id}")
+    @GetMapping("/file-seg/{id}")
     public ResponseEntity<ResponseMessage> firstSegregation(@PathVariable("id") Long id){
         try {
             fileService.segregateContentById(id);
@@ -105,7 +106,7 @@ public class FileController {
         }
     }
 
-    @DeleteMapping("/files/{id}")
+    @DeleteMapping("/all-files/{id}")
     public ResponseEntity<ResponseMessage> deleteFileById(@PathVariable long id){
         try {
             fileService.deleteFileById(id);
