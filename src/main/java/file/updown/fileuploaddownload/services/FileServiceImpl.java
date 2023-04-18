@@ -116,7 +116,7 @@ public class FileServiceImpl implements FileService {
         detail.setFileDetail(segFile);
         footerRepository.save(foo);
         detailRepository.save(detail);
-        System.out.println(detail.getContent());
+
 
     }
 

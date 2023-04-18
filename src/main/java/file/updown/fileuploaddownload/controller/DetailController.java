@@ -1,8 +1,10 @@
 package file.updown.fileuploaddownload.controller;
 
 import file.updown.fileuploaddownload.entities.Detail;
+import file.updown.fileuploaddownload.entities.Footer;
 import file.updown.fileuploaddownload.entities.Message;
 import file.updown.fileuploaddownload.services.DetailService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +22,26 @@ public class DetailController {
         this.detailService = detailService;
     }
 
-    @GetMapping("/detail_rec/{id}")
-    public List<String> getRec(@PathVariable("id") Long id) throws IOException {
-        Detail det= detailService.retreiveDetail(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Detail> getFooterById(@PathVariable("id") Long id){
 
-        return detailService.getRecordList(det);
+        Detail detail= detailService.retreiveDetail(id);
+        if (detail==null){
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok().body(detail);
+        }
+    }
+    @GetMapping("/detail-msg/{id}")
+    public List<Message> getDetailSeg(@PathVariable("id") Long id) throws IOException {
 
+        return detailService.segregateDetail(id);
+
+    }
+
+    @GetMapping()
+    public List<Detail> getDetails(){
+        return detailService.getAllDetails();
     }
 }

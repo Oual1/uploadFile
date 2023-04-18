@@ -22,6 +22,8 @@ public class FileUploadDownloadApplication {
     CommandLineRunner init(ZoneRepository zoneRepository, RecordRepository recordRepository) {
         List<Zone> reczones4= new ArrayList<>();
         List<Zone> reczones5= new ArrayList<>();
+        List<Zone>reczones10=new ArrayList<>();
+        List<Zone>reczones20=new ArrayList<>();
         return args -> {
 
             Zone zone400 = new Zone(400, "type de record", 1, 2);
@@ -144,6 +146,124 @@ public class FileUploadDownloadApplication {
             Zone zone28= new Zone(28, "REFERENCE DE L'ETABLISSEMENT", 138, 162);
             Zone zone314=new Zone(314, "bic - compte financier A", 167, 177);
             Zone zone3641=new Zone(3641, "iban - compte financier A", 179, 212);
+
+
+            zoneRepository.save(zone2);
+            zoneRepository.save(zone4);
+            zoneRepository.save(zone7);
+            zoneRepository.save(zone13);
+            zoneRepository.save(zone14);
+            zoneRepository.save(zone22);
+            zoneRepository.save(zone23);
+            zoneRepository.save(zone256);
+            zoneRepository.save(zone27);
+            zoneRepository.save(zone28);
+            zoneRepository.save(zone314);
+            zoneRepository.save(zone3641);
+
+            reczones10.add(zone2);
+            reczones10.add(zone4);
+            reczones10.add(zone7);
+            reczones10.add(zone13);
+            reczones10.add(zone14);
+            reczones10.add(zone22);
+            reczones10.add(zone23);
+            reczones10.add(zone256);
+            reczones10.add(zone27);
+            reczones10.add(zone28);
+            reczones10.add(zone3641);
+
+            Record rec10= new Record(10);
+            rec10.setZones(reczones10);
+            recordRepository.save(rec10);
+
+
+
+            Zone zone2_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+            Zone zone2_3=new Zone(3, "AUTORISATION TIERS PAYANT", 9, 9);
+            Zone zone2_7=new Zone(7, "n° mutualite affiliation", 33, 35);
+            Zone zone2_8=new Zone(8, "identification du beneficiairee (numéro NISS)", 36, 48);
+            Zone zone2_9=new Zone(9, "sexe beneficiaire", 49, 49);
+            Zone zone2_10=new Zone(10, "type facture", 50, 50);
+            Zone zone2_11=new Zone(11, "type facturation", 51, 51);
+            Zone zone2_13=new Zone(13, "SERVICE 721 bis", 53, 55);
+            Zone zone2_14=new Zone(14, "n° de l'etablissement qui facture (= R10 Z14)", 56, 67);
+            Zone zone2_15=new Zone(15, "n° de l'etablissement de sejour", 68, 79);
+            Zone zone2_16=new Zone(16, "CODE LEVEE DELAI DE PRESCRIPTION", 80, 80);
+            Zone zone2_17=new Zone(17, "causes du traitement", 81, 84);
+            Zone zone2_18=new Zone(18, "n° mutualite destination", 85, 87);
+            Zone zone2_2021=new Zone(2021, "DATE DE L'ACCORD TRAITEMENT DE REEDUCATION OU DATE D'INSCRIPTION AU FORFAIT", 100, 107);
+            Zone zone2_2425=new Zone(2425, "n° de facture individuelle", 115, 126);
+            Zone zone2_27=new Zone(27, "CODE TITULAIRE 1 + 2", 128, 137);
+            Zone zone2_28=new Zone(28, "REFERENCE DE L'ETABLISSEMENT", 138, 162);
+            Zone zone2_2931=new Zone(2931, "numero de facture precedente", 163, 174);
+            Zone zone2_32=new Zone(32, "FLAG IDENTIFICATION DU BENEFICIAIRE", 175, 175);
+            Zone zone2_3436=new Zone(3436, "numero de l'envoi precedent", 177, 179);
+            Zone zone2_37=new Zone(37, "n° mut. fact. preced.", 180, 182);
+            Zone zone2_3839=new Zone(3839, "REFERENCE MUTUALITE NUMERO DE COMPTE FINANCIER A", 183, 204);
+
+            Zone zone2_41=new Zone(41, "ANNEE ET MOIS PRECEDEMMENT FACTURES", 207, 212);
+            Zone zone2_4245=new Zone(4245, "DONNEES DE REFERENCE RESEAU", 213, 260);
+            Zone zone2_47=new Zone(47, "date de facturation", 262, 268);
+
+            zoneRepository.save(zone2_2);
+            zoneRepository.save(zone2_3);
+            zoneRepository.save(zone2_7);
+            zoneRepository.save(zone2_8);
+            zoneRepository.save(zone2_9);
+            zoneRepository.save(zone2_10);
+            zoneRepository.save(zone2_11);
+            zoneRepository.save(zone2_13);
+            zoneRepository.save(zone2_14);
+            zoneRepository.save(zone2_15);
+            zoneRepository.save(zone2_16);
+            zoneRepository.save(zone2_17);
+            zoneRepository.save(zone2_18);
+            zoneRepository.save(zone2_2021);
+            zoneRepository.save(zone2_2425);
+            zoneRepository.save(zone2_27);
+            zoneRepository.save(zone2_28);
+            zoneRepository.save(zone2_2931);
+            zoneRepository.save(zone2_32);
+            zoneRepository.save(zone2_3436);
+            zoneRepository.save(zone2_37);
+            zoneRepository.save(zone2_3839);
+            zoneRepository.save(zone2_41);
+            zoneRepository.save(zone2_4245);
+            zoneRepository.save(zone2_47);
+
+            reczones20.add(zone2_2);
+            reczones20.add(zone2_3);
+            reczones20.add(zone2_7);
+            reczones20.add(zone2_8);
+            reczones20.add(zone2_9);
+            reczones20.add(zone2_10);
+            reczones20.add(zone2_11);
+            reczones20.add(zone2_13);
+            reczones20.add(zone2_14);
+            reczones20.add(zone2_15);
+            reczones20.add(zone2_16);
+            reczones20.add(zone2_17);
+            reczones20.add(zone2_18);
+            reczones20.add(zone2_2021);
+            reczones20.add(zone2_2425);
+            reczones20.add(zone2_27);
+            reczones20.add(zone2_28);
+            reczones20.add(zone2_2931);
+            reczones20.add(zone2_32);
+            reczones20.add(zone2_3436);
+            reczones20.add(zone2_37);
+            reczones20.add(zone2_3839);
+            reczones20.add(zone2_41);
+            reczones20.add(zone2_4245);
+            reczones20.add(zone2_47);
+
+            Record rec20= new Record(20);
+            rec20.setZones(reczones20);
+            recordRepository.save(rec20);
+
+
+
 
 
 

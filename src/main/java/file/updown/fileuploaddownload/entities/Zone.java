@@ -14,9 +14,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class Zone {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Integer numéro;
     private String description;
     private Integer beginPosition;
     private Integer endPosition;
 
+    public Zone(Integer numéro, String description, Integer beginPosition, Integer endPosition) {
+        this.numéro = numéro;
+        this.description = description;
+        this.beginPosition = beginPosition;
+        this.endPosition = endPosition;
+    }
 }
