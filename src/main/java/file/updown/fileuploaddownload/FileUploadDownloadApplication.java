@@ -263,6 +263,40 @@ public class FileUploadDownloadApplication {
             recordRepository.save(rec20);
 
 
+            Zone zone50_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+            Zone zone50_3=new Zone(3, "NORME PRESTATION (POURCENTAGE)",9 , 9);
+            Zone zone50_4=new Zone(4, "(pseudo-)code nomencl.", 10, 16);
+            Zone zone50_5=new Zone(5, "date 1er prest. effect.", 17, 24);
+            Zone zone50_6=new Zone(6, "date derniere prestation effectuee", 25, 32);
+
+            Zone zone50_7=new Zone(7, "n° mutualite affiliation", 33, 35);
+            Zone zone50_8=new Zone(8, "Identification du beneficiaire", 36, 48);
+            Zone zone50_9=new Zone(9, "SEXE BENEFICIAIRE", 49, 49);
+            Zone zone50_12=new Zone(12, "nuit, w.e. ou jour ferie", 52, 52);
+            Zone zone50_13=new Zone(13, "CODE SERVICE", 53, 55);
+            Zone zone50_14=new Zone(14, "lieu de prestation", 56, 67);
+            Zone zone50_15=new Zone(15, "IDENTIFICATION DU DISPENSATEUR", 68, 79);
+            Zone zone50_16=new Zone(16, "NORME DISPENSATEUR", 80, 80);
+            Zone zone50_1718=new Zone(1718, "prestation relative", 81, 87);
+            Zone zone50_19=new Zone(19, "signe+montant intervention de l'assurance", 88, 99);
+            Zone zone50_2021=new Zone(2021, "date de la prescription", 100, 107);
+            Zone zone50_22=new Zone(22, "signe + nombre d'unites", 108, 112);
+            Zone zone50_23=new Zone(23, "DEROGATION NOMBRE MAXIMAL OU PRESTATION IDENTIQUE", 113, 114);
+            Zone zone50_2425=new Zone(2425, "identification du prescripteur", 115, 126);
+            Zone zone50_26=new Zone(26, "norme prescript", 127, 127);
+            Zone zone50_27=new Zone(27, "SIGNE + INTERVENTION PERSONNELLE PATIENT", 128, 137);
+            Zone zone50_28=new Zone(28, "ref. etablissement", 138, 162);
+            Zone zone50_29=new Zone(29, "dent traitee (cas de DENTIST)", 163, 164);//?????
+            Zone zone50_3031=new Zone(3031, "SIGNE + MONTANT SUPPLEMENT OU MONTANT POUR PRODUITSPRESTATIONS OU SERVICES NON-REMBOURSABLES", 165, 174);
+            Zone zone50_32=new Zone(32, "EXCEPTION TIERS PAYANT", 175, 175);
+
+            Zone zone50_33=new Zone(33, "CODE FACTURATION INTERVENTION PERSONNELLE OU SUPPLEMENT", 176, 176);
+            Zone zone50_34=new Zone(23, "membre traité", 177, 177);
+            Zone zone50_35=new Zone(23, "PRESTATAIRE CONVENTIONNE", 178, 178);
+            Zone zone50_49=new Zone(23, "DISPENSATEUR AUXILIAIRE", 271, 282);
+
+
+
 
 
 
