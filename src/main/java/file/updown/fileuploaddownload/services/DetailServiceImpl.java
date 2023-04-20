@@ -36,16 +36,11 @@ public class DetailServiceImpl implements DetailService {
             i++;
 
         }
-
-        detail.getRecordsDetail().add(new Record(10));
+        for (int j=0; i< recContent.size(); i++){
+            Integer type= Integer.valueOf(recContent.get(j).substring(0,2));
+            detail.getRecordsDetail().add(new Record(type));
+        }
         detailRepository.save(detail);
-
-
-//        for (int j=0; i< recContent.size(); i++){
-//            Integer type= Integer.valueOf(recContent.get(j).substring(0,2));
-//            detail.getRecordsDetail().add(new Record(type));
-//        }
-//        detailRepository.save(detail);
 
         return recContent;
     }

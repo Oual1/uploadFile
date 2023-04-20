@@ -28,6 +28,7 @@ public class FileUploadDownloadApplication {
         List<Zone>reczones80= new ArrayList<>();
         List<Zone>reczones90= new ArrayList<>();
         return args -> {
+
           // Enregistrement des zones de record 95
             Zone zone400 = new Zone(400, "type de record", 1, 2);
             Zone zone4001 = new Zone(4001, "code erreur", 3, 4);
@@ -89,7 +90,7 @@ public class FileUploadDownloadApplication {
           recordRepository.save(rec4);
 
             // Enregistrement des zones de record 96
-            Zone zone500 = new Zone(500, "type de record", 1, 2);
+          Zone zone500 = new Zone(500, "type de record", 1, 2);
             Zone zone5001 = new Zone(5001, "code erreur", 3, 4);
             Zone zone501 = new Zone(501, "Numéro de mutualité", 5, 7);
             Zone zone5011 = new Zone(5011, "code erreur", 8, 9);
@@ -138,8 +139,14 @@ public class FileUploadDownloadApplication {
             rec5.setZones(reczones5);
             recordRepository.save(rec5);
 
+
+            // zone 2 des records 10 20 80 90 commun
+          Zone zone2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+          zoneRepository.save(zone2);
+
+
             // Enregistrement des zones de record 10
-            Zone zone2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+
             Zone zone4=new Zone(4, "VERSION FICHIER", 10, 16);
             Zone zone7=new Zone(7, "numero de l'envoi", 33,35 );
             Zone zone13=new Zone(13, "contenu facturation", 53, 55);
@@ -153,7 +160,7 @@ public class FileUploadDownloadApplication {
             Zone zone3641=new Zone(3641, "iban - compte financier A", 179, 212);
 
 
-            zoneRepository.save(zone2);
+
             zoneRepository.save(zone4);
             zoneRepository.save(zone7);
             zoneRepository.save(zone13);
@@ -184,7 +191,7 @@ public class FileUploadDownloadApplication {
 
             // Enregistrement des zones de record 20
 
-            Zone zone2_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+
             Zone zone2_3=new Zone(3, "AUTORISATION TIERS PAYANT", 9, 9);
             Zone zone2_7=new Zone(7, "n° mutualite affiliation", 33, 35);
             Zone zone2_8=new Zone(8, "identification du beneficiairee (numéro NISS)", 36, 48);
@@ -211,7 +218,7 @@ public class FileUploadDownloadApplication {
             Zone zone2_4245=new Zone(4245, "DONNEES DE REFERENCE RESEAU", 213, 260);
             Zone zone2_47=new Zone(47, "date de facturation", 262, 268);
 
-            zoneRepository.save(zone2_2);
+
             zoneRepository.save(zone2_3);
             zoneRepository.save(zone2_7);
             zoneRepository.save(zone2_8);
@@ -237,7 +244,7 @@ public class FileUploadDownloadApplication {
             zoneRepository.save(zone2_4245);
             zoneRepository.save(zone2_47);
 
-            reczones20.add(zone2_2);
+            reczones20.add(zone2);
             reczones20.add(zone2_3);
             reczones20.add(zone2_7);
             reczones20.add(zone2_8);
@@ -268,7 +275,7 @@ public class FileUploadDownloadApplication {
             recordRepository.save(rec20);
 
 // Enregistrement des zones de record 50
-            Zone zone50_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+
             Zone zone50_3=new Zone(3, "NORME PRESTATION (POURCENTAGE)",9 , 9);
             Zone zone50_4=new Zone(4, "(pseudo-)code nomencl.", 10, 16);
             Zone zone50_5=new Zone(5, "date 1er prest. effect.", 17, 24);
@@ -300,7 +307,7 @@ public class FileUploadDownloadApplication {
             Zone zone50_35=new Zone(23, "PRESTATAIRE CONVENTIONNE", 178, 178);
             Zone zone50_49=new Zone(23, "DISPENSATEUR AUXILIAIRE", 271, 282);
 
-            zoneRepository.save(zone50_2);
+
             zoneRepository.save(zone50_3);
             zoneRepository.save(zone50_4);
             zoneRepository.save(zone50_5);
@@ -330,7 +337,7 @@ public class FileUploadDownloadApplication {
             zoneRepository.save(zone50_35);
             zoneRepository.save(zone50_49);
 
-            reczones50.add(zone50_2);
+            reczones50.add(zone2);
             reczones50.add(zone50_3);
             reczones50.add(zone50_4);
             reczones50.add(zone50_5);
@@ -366,7 +373,7 @@ public class FileUploadDownloadApplication {
 
 
             // Enregistrement des zones de record 80
-            Zone zone80_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+
             Zone zone80_7=new Zone(7, "n° mutualite affiliation", 33, 35);
             Zone zone80_8=new Zone(8, "identification du beneficiaire", 36, 48);
             Zone zone80_9=new Zone(9, "SEXE BENEFICIAIRE", 49, 49);
@@ -384,7 +391,7 @@ public class FileUploadDownloadApplication {
             Zone zone80_32=new Zone(32, "FLAG IDENTIFICATION DU BENEFICIAIRE", 175, 175);
             Zone zone80_38=new Zone(38, "SIGNE + ACOMPTE NUMERO DE COMPTE FINANCIER A", 183, 194);
 
-            zoneRepository.save(zone80_2);
+
             zoneRepository.save(zone80_7);
             zoneRepository.save(zone80_8);
             zoneRepository.save(zone80_9);
@@ -402,7 +409,7 @@ public class FileUploadDownloadApplication {
             zoneRepository.save(zone80_32);
             zoneRepository.save(zone80_38);
 
-            reczones80.add(zone80_2);
+            reczones80.add(zone2);
             reczones80.add(zone80_7);
             reczones80.add(zone80_8);
             reczones80.add(zone80_9);
@@ -426,7 +433,7 @@ public class FileUploadDownloadApplication {
 
 
           // Enregistrement des zones de record 90
-          Zone zone90_2=new Zone(2, "NUMERO D'ORDRE DE L'ENREGISTREMENT", 3, 8);
+
           Zone zone90_56=new Zone(56, "n° compte financier a", 17, 28);
           Zone zone90_7=new Zone(7, "numero de l'envoi", 33, 35);
           Zone zone90_14=new Zone(14, "n° tiers payant", 56, 67);
@@ -439,7 +446,7 @@ public class FileUploadDownloadApplication {
           Zone zone90_3641=new Zone(3641, "iban - compte financier A", 179, 213);
 
 
-          zoneRepository.save(zone90_2);
+
           zoneRepository.save(zone90_56);
           zoneRepository.save(zone90_7);
           zoneRepository.save(zone90_14);
@@ -451,7 +458,7 @@ public class FileUploadDownloadApplication {
           zoneRepository.save(zone90_3134);
           zoneRepository.save(zone90_3641);
 
-          reczones90.add(zone90_2);
+          reczones90.add(zone2);
           reczones90.add(zone90_56);
           reczones90.add(zone90_7);
           reczones90.add(zone90_14);

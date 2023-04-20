@@ -24,9 +24,12 @@ public class File {
     @Enumerated(EnumType.STRING)
     private FileType type;
     @OneToOne
+    private Header headerFile;
+    @OneToOne
     private Detail detailFile;
     @OneToOne
     private Footer footerFile;
+
 
 
     public File(Long id, String fileName, FileState state, FileType type) {

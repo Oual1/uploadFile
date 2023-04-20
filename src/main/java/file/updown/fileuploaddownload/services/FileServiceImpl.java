@@ -2,11 +2,13 @@ package file.updown.fileuploaddownload.services;
 
 import file.updown.fileuploaddownload.entities.Detail;
 import file.updown.fileuploaddownload.entities.Footer;
+import file.updown.fileuploaddownload.entities.Header;
 import file.updown.fileuploaddownload.enums.FileState;
 import file.updown.fileuploaddownload.enums.FileType;
 import file.updown.fileuploaddownload.repositories.DetailRepository;
 import file.updown.fileuploaddownload.repositories.FileRepository;
 import file.updown.fileuploaddownload.repositories.FooterRepository;
+import file.updown.fileuploaddownload.repositories.HeaderRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -22,11 +24,13 @@ public class FileServiceImpl implements FileService {
     private FileRepository fileRepository;
     private FooterRepository footerRepository;
     private DetailRepository detailRepository;
+    private HeaderRepository headerRepository;
 
-    public FileServiceImpl(FileRepository fileRepository, FooterRepository footerRepository, DetailRepository detailRepository) {
+    public FileServiceImpl(FileRepository fileRepository, FooterRepository footerRepository, DetailRepository detailRepository, HeaderRepository headerRepository) {
         this.fileRepository = fileRepository;
         this.footerRepository= footerRepository;
         this.detailRepository= detailRepository;
+        this.headerRepository=headerRepository;
     }
 
 
@@ -86,6 +90,7 @@ public class FileServiceImpl implements FileService {
     public void segregateContentByType(file.updown.fileuploaddownload.entities.File segFile) throws IOException {
         String path = "./uploads/"+ segFile.getFileName();
         String content = Files.readString(Paths.get(path));
+        Header header= new Header();
 
         Footer foo= new Footer();
         Detail detail= new Detail();
@@ -93,6 +98,7 @@ public class FileServiceImpl implements FileService {
 //            segFile.setHeader(content.substring(0, 227));
 //            segFile.setBody(content.substring(227, 1977));
 //            segFile.setFooter(content.substring(1977));
+            header.setContent(content.substring(0, 227));
             foo.setContent(content.substring(1977));
             detail.setContent(content.substring(227, 1977));
 
@@ -100,20 +106,25 @@ public class FileServiceImpl implements FileService {
         }
         else {
 //            segFile.setHeader(content.substring(0, 676));
+            header.setContent(content.substring(0, 676));
 
             foo.setContent(content.substring(2828));
             detail.setContent(content.substring(676, 2828));
 
         }
         segFile.setState(FileState.SEGREGATED);
+        headerRepository.save(header);
         footerRepository.save(foo);
         detailRepository.save(detail);
+        segFile.setHeaderFile(header);
         segFile.setFooterFile(foo);
         segFile.setDetailFile(detail);
 
         fileRepository.save(segFile);
+        header.setFileHeader(segFile);
         foo.setFileFooter(segFile);
         detail.setFileDetail(segFile);
+        headerRepository.save(header);
         footerRepository.save(foo);
         detailRepository.save(detail);
 

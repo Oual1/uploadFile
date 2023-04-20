@@ -17,12 +17,12 @@ import java.util.*;
 @Service
 public class FooterServiceImpl implements FooterService {
     private FooterRepository footerRepository;
-    private RecordRepository recordRepository;
+
     private MessageRepository messageRepository;
 
-    public FooterServiceImpl(FooterRepository footerRepository, RecordRepository recordRepository, MessageRepository messageRepository) {
+    public FooterServiceImpl(FooterRepository footerRepository, MessageRepository messageRepository) {
         this.footerRepository = footerRepository;
-        this.recordRepository = recordRepository;
+
         this.messageRepository = messageRepository;
     }
 

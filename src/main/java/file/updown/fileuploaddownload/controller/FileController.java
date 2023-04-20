@@ -91,7 +91,7 @@ public class FileController {
             return ResponseEntity.ok().body(foundFile);
         }
     }
-    @GetMapping("/all-files")
+    @GetMapping()
     public List<File> getFiles(){
         return fileService.getAllFiles();
     }
@@ -106,7 +106,7 @@ public class FileController {
         }
     }
 
-    @DeleteMapping("/all-files/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ResponseMessage> deleteFileById(@PathVariable long id){
         try {
             fileService.deleteFileById(id);

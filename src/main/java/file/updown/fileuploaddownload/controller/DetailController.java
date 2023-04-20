@@ -23,7 +23,7 @@ public class DetailController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Detail> getFooterById(@PathVariable("id") Long id){
+    public ResponseEntity<Detail> getDetailById(@PathVariable("id") Long id){
 
         Detail detail= detailService.retreiveDetail(id);
         if (detail==null){
