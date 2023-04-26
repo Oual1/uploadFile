@@ -64,6 +64,7 @@ public class FileController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam(name="file") MultipartFile file) throws IOException {
 
         if(file.getOriginalFilename().endsWith(".txt")) {
+
             byte[] bytes = file.getBytes();
             String dateSt= LocalDate.now().toString();
             String newFileName= file.getOriginalFilename().substring(0,file.getOriginalFilename().length()-4)+"_"+dateSt +".txt" ;

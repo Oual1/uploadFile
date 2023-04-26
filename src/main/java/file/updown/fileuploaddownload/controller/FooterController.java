@@ -2,6 +2,7 @@ package file.updown.fileuploaddownload.controller;
 
 import file.updown.fileuploaddownload.entities.File;
 import file.updown.fileuploaddownload.entities.Footer;
+import file.updown.fileuploaddownload.entities.Header;
 import file.updown.fileuploaddownload.entities.Message;
 import file.updown.fileuploaddownload.services.FileService;
 import file.updown.fileuploaddownload.services.FooterService;
@@ -24,12 +25,14 @@ public class FooterController {
         this.fileService = fileService;
         this.messageService = messageService;
     }
+    // segregate footer
     @GetMapping("/footer-msg/{id}")
     public List<Message> getFooterSeg(@PathVariable("id") Long id) throws IOException {
 
         return footerService.segregateFooter(id);
 
     }
+    //Get footer by Id
     @GetMapping("/{id}")
     public ResponseEntity<Footer> getFooterById(@PathVariable("id") Long id){
 
@@ -41,9 +44,18 @@ public class FooterController {
             return ResponseEntity.ok().body(footer);
         }
     }
+    // get all footers
     @GetMapping()
     public List<Footer> getFooters(){
         return footerService.getAllFooters();
+    }
+
+    @GetMapping("/footerRec/{id}")
+    public List<String> getRecords(@PathVariable("id") Long id) throws IOException {
+        Footer footer= footerService.retreiveFooter(id);
+
+        return footerService.getRecordList(footer);
+
     }
 
 

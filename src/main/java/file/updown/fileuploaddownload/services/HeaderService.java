@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface HeaderService {
-    List<Header> segregateHeader(Long id) throws IOException;
+    List<Message> segregateHeader(Long id) throws IOException;
     Header retreiveHeader(Long id);
     List<String> getRecordList(Header header);
     List<Header> getAllHeaders();

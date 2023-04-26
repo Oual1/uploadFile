@@ -16,7 +16,7 @@ public class Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(length = 5000)
+    @Column(length = 50000)
     @JsonIgnore
     private String content;
     @JsonIgnore

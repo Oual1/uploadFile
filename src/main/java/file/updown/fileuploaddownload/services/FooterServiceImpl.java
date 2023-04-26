@@ -19,11 +19,13 @@ public class FooterServiceImpl implements FooterService {
     private FooterRepository footerRepository;
 
     private MessageRepository messageRepository;
+    private RecordService recordService;
 
-    public FooterServiceImpl(FooterRepository footerRepository, MessageRepository messageRepository) {
+    public FooterServiceImpl(FooterRepository footerRepository, MessageRepository messageRepository, RecordService recordService ) {
         this.footerRepository = footerRepository;
 
         this.messageRepository = messageRepository;
+        this.recordService= recordService;
     }
 
 
@@ -39,12 +41,12 @@ public class FooterServiceImpl implements FooterService {
         List<String> recContent = getRecordList(segFooter);
         List<Message> messages= new ArrayList<>();
 
-        for (int i=0; i<segFooter.getRecordFooter().size(); i++) {
+        for (int i=0; i<2; i++) { //segFooter.getRecordFooter().size()
             Record rec= segFooter.getRecordFooter().get(i);
                 for (int z = 0; z < rec.getZones().size(); z++) {
                     Zone zoo = rec.getZones().get(z);
                     String contenu= recContent.get(i).substring(zoo.getBeginPosition()-1, zoo.getEndPosition());
-
+                    System.out.println(contenu);
                     Message msg= new Message(contenu, zoo);
                     messageRepository.save(msg);
                     messages.add(msg);
@@ -53,10 +55,6 @@ public class FooterServiceImpl implements FooterService {
 
         segFooter.setMessagesFooter(messages);
         footerRepository.save(segFooter);
-
-
-
-
         return messages;
     }
 
@@ -69,20 +67,29 @@ public class FooterServiceImpl implements FooterService {
     public List<String> getRecordList(Footer footer) {
         List<String> recContent= new ArrayList<>();
         String content= footer.getContent();
-        String firstRec= content.substring(0,350);
-        String secondRec=content.substring(350,700);
+        String firstRec="";
+        String secondRec="";
+        if (footer.getFileFooter().getType()== FileType.BORDEREAU_FACTURATION || footer.getFileFooter().getType()==FileType.REFUS_BORDEREAUX){
+            firstRec= content.substring(0,350);
+            secondRec=content.substring(350,700);
+        }else {
+            firstRec= content.substring(0,800);
+            secondRec=content.substring(800, 1600);
+        }
         recContent.add(firstRec);
         recContent.add(secondRec);
         String sub= content.substring(0,2);
         if (sub.equals("95")){
 
-            footer.getRecordFooter().add(new Record(95));
-            footer.getRecordFooter().add(new Record(96));
+            footer.getRecordFooter().add(recordService.retreiveRecord(95));
+            footer.getRecordFooter().add(recordService.retreiveRecord(96));
+
         }else {
-            footer.getRecordFooter().add(new Record(91));
-            footer.getRecordFooter().add(new Record(92));
+            footer.getRecordFooter().add(recordService.retreiveRecord(91));
+            footer.getRecordFooter().add(recordService.retreiveRecord(92));
         }
         footerRepository.save(footer);
+
 
         return recContent;
 

@@ -90,14 +90,13 @@ public class FileServiceImpl implements FileService {
     public void segregateContentByType(file.updown.fileuploaddownload.entities.File segFile) throws IOException {
         String path = "./uploads/"+ segFile.getFileName();
         String content = Files.readString(Paths.get(path));
+
         Header header= new Header();
 
         Footer foo= new Footer();
         Detail detail= new Detail();
         if (segFile.getType()== FileType.BORDEREAU_FACTURATION || segFile.getType()==FileType.REFUS_BORDEREAUX){
-//            segFile.setHeader(content.substring(0, 227));
-//            segFile.setBody(content.substring(227, 1977));
-//            segFile.setFooter(content.substring(1977));
+
             header.setContent(content.substring(0, 227));
             foo.setContent(content.substring(1977));
             detail.setContent(content.substring(227, 1977));
@@ -105,13 +104,14 @@ public class FileServiceImpl implements FileService {
 
         }
         else {
-//            segFile.setHeader(content.substring(0, 676));
+
             header.setContent(content.substring(0, 676));
 
-            foo.setContent(content.substring(2828));
-            detail.setContent(content.substring(676, 2828));
+            foo.setContent(content.substring(8677));
+            detail.setContent(content.substring(676, 8677));
 
         }
+
         segFile.setState(FileState.SEGREGATED);
         headerRepository.save(header);
         footerRepository.save(foo);

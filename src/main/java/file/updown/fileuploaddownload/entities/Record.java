@@ -16,10 +16,19 @@ public class Record {
     private Integer recordType;
     private Long longueur;
 
-    @OneToMany
+    @ManyToMany(
+            fetch = FetchType.LAZY
+
+    )
+    @JoinTable(
+            name = "record_zone",
+            joinColumns = @JoinColumn(name = "record_id"),
+            inverseJoinColumns = @JoinColumn(name = "zone_id")
+    )
     private List<Zone> zones;
 
     public Record(Integer recordType) {
         this.recordType = recordType;
     }
+
 }
